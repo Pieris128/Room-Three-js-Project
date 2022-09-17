@@ -20,13 +20,13 @@ export default class Experience {
     this.canvas = canvas;
     this.scene = new THREE.Scene();
     this.time = new Time();
-    this.Sizes = new Sizes();
+    this.sizes = new Sizes();
     this.camera = new Camera();
     this.renderer = new Renderer();
     this.resources = new Resources(assets);
     this.world = new World();
 
-    this.Sizes.on("resize", () => {
+    this.sizes.on("resize", () => {
       this.resize();
     });
     this.time.on("update", () => {
