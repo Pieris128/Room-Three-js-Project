@@ -9,14 +9,40 @@
 html,
 body {
   font-family: "Montserrat", sans-serif;
-  color: var(--text-black);
+}
+
+h1, section, p, span, svg {
+  transition: background-color 0.5s linear;
 }
 
 :root {
-  --text-black: #333332;
-  --primary-color: #faf4e5;
-  --primary-pink: #e5a1aa;
+  /*Light Theme Variables*/
+  --color-text-light: #333332;
+  --color-background-light: #faf4e5;
+  --color-pink-light: #e5a1aa;
+  --color-green-light: #7ad0ac;
+  --color-blue-light: #8395cd;
+
+  /*Dark Theme Variables*/
+  --color-text-dark: #faf4e5;
+  --color-background-dark: #8395cd;
 }
+
+.light-theme {
+  --color-text: var(--color-text-light);
+  --color-background: var(--color-background-light);
+  --color-pink: var(--color-pink-light);
+  --color-green: var(--color-green-light)
+  --color-blue: var(--color-blue-light)
+}
+.dark-theme {
+  --color-text: var(--color-text-dark);
+  --color-background: var(--color-background-dark);
+  --color-pink: var(--color-text-dark);
+  --color-green: var(--color-text-dark)
+  --color-blue: var(--color-text-dark)
+}
+
 
 /* Experience --------------------------------------- */
 
@@ -62,6 +88,8 @@ body {
   flex-direction: row;
   justify-content: center;
   align-content: center;
+  color: var(--color-text)
+
 }
 
 .toggle-button {
@@ -72,7 +100,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--primary-pink);
+  background-color: var(--color-pink);
   border-radius: 999px;
   margin: 0px 16px;
   border: none;
@@ -89,8 +117,12 @@ body {
   border-radius: 50%;
   width: 20px;
   height: 20px;
-  background-color: var(--primary-color);
+  background-color: var(--color-background);
   transition: all 0.2s ease-in-out;
+}
+
+.slide {
+  left: 28px;
 }
 
 /* Section Formatting ---------------------------------------- */
@@ -102,7 +134,7 @@ body {
   width: 50%;
   padding: 1000px 4%;
   margin: 0;
-  background-color: var(--primary-color);
+  background-color: var(--color-background);
 }
 
 .left {
@@ -115,7 +147,7 @@ body {
 .section-intro-wrapper {
   position: relative;
   padding: 20% 5%;
-  border-bottom: 2px solid var(--primary-pink);
+  border-bottom: 2px solid var(--color-pink);
   padding-bottom: 400px;
 }
 
@@ -129,18 +161,22 @@ body {
   font-weight: 700;
   line-height: 1.8;
   margin-top: 64px;
+  color: var(--color-text)
+
 }
 
 .section-text {
   line-height: 2;
   margin-top: 18px;
   font-size: 16px;
+  color: var(--color-text)
+
 }
 
 /* Fancy Decoration Part of Section */
 .section-title {
   position: relative;
-  color: var(--primary-pink);
+  color: var(--color-pink);
 }
 
 .section-title-text {
@@ -151,6 +187,8 @@ body {
   transform: skewY(25deg);
   z-index: 5;
   text-transform: uppercase;
+  color: var(--color-pink)
+
 }
 
 .styleOne,
@@ -161,7 +199,7 @@ body {
   width: 100%;
   max-width: 278px;
   height: 60px;
-  border: 1px solid var(--primary-pink);
+  border: 1px solid var(--color-pink);
   transform-origin: left;
   transform: skewY(-25deg);
 }
@@ -177,14 +215,14 @@ body {
 .styleThree {
   top: 80px;
   transform: skewY(25deg);
-  background-color: var(--primary-pink);
+  background-color: var(--color-pink);
 }
 
 .section-number {
   position: absolute;
   bottom: 15px;
   right: 0;
-  color: var(--primary-pink);
+  color: var(--color-pink);
   font-size: 24px;
 }
 
@@ -206,21 +244,63 @@ body {
   position: absolute;
   bottom: 164px;
   left: 0;
+  color: var(--color-text)
+
 }
 
 .hero-second {
   position: absolute;
   top: calc(50% - 160px);
   right: 0;
+  color: var(--color-text)
 }
 
 .hero-main-title {
   font-size: 48px;
+  color: var(--color-text)
+
 }
 .hero-main-description {
   font-size: 18px;
+  color: var(--color-text)
+
 }
 .hero-second-subheading {
   font-size: 32px;
   text-transform: uppercase;
+  color: var(--color-text)
+
+}
+
+/* Other colors override*/
+
+.blue-text {
+  color: var(--color-blue);
+}
+
+.blue-border {
+  border-color: var(--color-blue);
+}
+
+.blue-background {
+  background-color: var(--color-blue);
+}
+.green-text {
+  color: var(--color-green);
+}
+
+.green-border {
+  border-color: var(--color-green);
+}
+
+.green-background {
+  background-color: var(--color-green);
+}
+
+
+/* Media Querys */
+@media (max-width: 968px) {
+  .section {
+    width: 100%;
+  }
 }

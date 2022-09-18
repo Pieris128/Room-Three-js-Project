@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import Experience from "../Experience";
 import GSAP from "gsap";
+import { RectAreaLightHelper } from "three/examples/jsm/helpers/RectAreaLightHelper";
 
 export default class Room {
   constructor() {
@@ -33,22 +34,51 @@ export default class Room {
           groupchild.castShadow = true;
         });
       }
-
-      if (child.name === "AquaGlass") {
-        child.material = new THREE.MeshPhysicalMaterial();
-        child.material.roughness = 0;
-        child.material.color.set(0x549dd2);
-        child.material.ior = 3;
-        child.material.transmission = 1;
-        child.material.opacity = 1;
+      if (child.name === "Aquarium") {
+        child.children[0].material = new THREE.MeshPhysicalMaterial();
+        child.children[0].material.roughness = 0;
+        child.children[0].material.color.set(0x549dd2);
+        child.children[0].material.ior = 3;
+        child.children[0].material.transmission = 1;
+        child.children[0].material.opacity = 1;
       }
 
-      if (child.name === "Screen") {
-        child.material = new THREE.MeshBasicMaterial({
+      if (child.name === "Computer") {
+        child.children[0].material = new THREE.MeshBasicMaterial({
           map: this.resources.items.screen,
         });
       }
+      if (child.name === "Minifloor") {
+        child.position.x = 1.5;
+        child.position.z = 5;
+      }
+      if (
+        child.name === "Mailbox" ||
+        child.name === "Lamp" ||
+        child.name === "Flower" ||
+        child.name === "Floor_First" ||
+        child.name === "Floor_second"
+      ) {
+        child.scale.set(0, 0, 0);
+      }
     });
+
+    const width = 0.4;
+    const height = 0.9;
+    const intensity = 1;
+    const rectLight = new THREE.RectAreaLight(
+      0xffffff,
+      intensity,
+      width,
+      height
+    );
+    rectLight.position.set(5.7, 3.8, -3.3);
+    rectLight.rotation.x = -Math.PI / 2;
+    rectLight.rotation.z = Math.PI / 4;
+    this.actualRoom.add(rectLight);
+
+    // const rectLightHelper = new RectAreaLightHelper(rectLight);
+    // rectLight.add(rectLightHelper);
 
     this.scene.add(this.actualRoom);
     this.actualRoom.scale.set(0.15, 0.15, 0.15);
