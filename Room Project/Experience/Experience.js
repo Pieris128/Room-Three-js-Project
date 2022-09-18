@@ -8,8 +8,10 @@ import assets from "./Utils/assets";
 import Camera from "./Camera";
 import Theme from "./Theme";
 import Renderer from "./Renderer";
+import Preloader from "./Preloader";
 
 import World from "./World/World";
+import Controls from "./World/Controls";
 
 export default class Experience {
   static instance;
@@ -27,6 +29,11 @@ export default class Experience {
     this.resources = new Resources(assets);
     this.theme = new Theme();
     this.world = new World();
+    this.preloader = new Preloader();
+
+    this.preloader.on("enablecontrols", () => {
+      this.controls = new Controls();
+    });
 
     this.sizes.on("resize", () => {
       this.resize();
@@ -43,6 +50,7 @@ export default class Experience {
   }
 
   update() {
+    this.preloader.update();
     this.camera.update();
     this.renderer.update();
     this.world.update();

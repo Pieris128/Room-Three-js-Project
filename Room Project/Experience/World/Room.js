@@ -11,6 +11,7 @@ export default class Room {
     this.time = this.experience.time;
     this.room = this.resources.items.room;
     this.actualRoom = this.room.scene;
+    this.roomChildren = {};
 
     this.lerp = {
       current: 0,
@@ -52,15 +53,24 @@ export default class Room {
         child.position.x = 1.5;
         child.position.z = 5;
       }
-      if (
-        child.name === "Mailbox" ||
-        child.name === "Lamp" ||
-        child.name === "Flower" ||
-        child.name === "Floor_First" ||
-        child.name === "Floor_second"
-      ) {
-        child.scale.set(0, 0, 0);
+      // if (
+      //   child.name === "Mailbox" ||
+      //   child.name === "Lamp" ||
+      //   child.name === "Flower" ||
+      //   child.name === "Floor_First" ||
+      //   child.name === "Floor_second"
+      // ) {
+      //   child.scale.set(0, 0, 0);
+      // }
+
+      child.scale.set(0, 0, 0);
+      if (child.name === "Cube") {
+        // child.scale.set(1, 1, 1);
+        child.position.set(0, -0.7, 0);
+        child.rotation.y = Math.PI / 4;
       }
+
+      this.roomChildren[child.name.toLowerCase()] = child;
     });
 
     const width = 0.4;
@@ -76,6 +86,8 @@ export default class Room {
     rectLight.rotation.x = -Math.PI / 2;
     rectLight.rotation.z = Math.PI / 4;
     this.actualRoom.add(rectLight);
+
+    this.roomChildren["rectLight"] = rectLight;
 
     // const rectLightHelper = new RectAreaLightHelper(rectLight);
     // rectLight.add(rectLightHelper);
